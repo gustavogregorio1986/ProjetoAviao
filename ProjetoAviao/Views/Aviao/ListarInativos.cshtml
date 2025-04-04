@@ -34,7 +34,12 @@
                     <td>@aviao.Origem</td>
                     <td>@aviao.Conexao</td>
                     <td>@aviao.Destino</td>
-                    <td>@aviao.Ativo</td>
+                    <td>
+                        @if (aviao.Ativo == 0)
+                        {
+                            <span class="badge bg-danger">0</span>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
