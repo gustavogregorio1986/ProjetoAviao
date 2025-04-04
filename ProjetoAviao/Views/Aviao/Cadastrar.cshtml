@@ -1,3 +1,52 @@
-﻿@{
+﻿@model ProjetoAviao.Models.AviaoView
+@{
     ViewData["Title"] = "Cadastrar Avião";
+}
+
+<h2>Cadastrar Aviões</h2>
+
+@if (TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensagem"]</div>
+}
+
+<form asp-controller="Aviao" asp-action="Cadastrar" method="post" class="mt-4">
+    <div class="form-group">
+        <label asp-for="Aviacao"></label>
+        <input asp-for="Aviacao" class="form-control" />
+        <span asp-validation-for="Aviacao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Tipo"></label>
+        <input asp-for="Tipo" class="form-control" />
+        <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Origem"></label>
+        <input asp-for="Origem" class="form-control" />
+        <span asp-validation-for="Origem" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Conexao"></label>
+        <input asp-for="Conexao" class="form-control" />
+        <span asp-validation-for="Conexao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Destino"></label>
+        <input asp-for="Destino" class="form-control" />
+        <span asp-validation-for="Destino" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+</form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
