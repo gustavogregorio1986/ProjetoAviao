@@ -12,5 +12,9 @@ namespace ProjetoAviao.Service.Service.Interface
         void AdicionarAviao(Aviao aviao);
 
         List<Aviao> ObterPaginado(int paginaAtual, int itensPorPagina, out int totalItens);
+
+        List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo, out int totalItens);
+
+        List<Aviao> ListarInativos(int paginaAtual, int itensPorPagina, int inativo, out int totalItens);
     }
 }

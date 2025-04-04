@@ -74,5 +74,39 @@ namespace ProjetoAviao.Controllers
 
             return View(viewModel);
         }
+
+        [HttpGet]
+        public IActionResult ListarAtivos(int paginaAtual = 1, int ativo = 1, int itensPorPagina = 5)
+        {
+            var avioes = _aviaoService.ListarAtivos(paginaAtual, itensPorPagina, ativo, out int total);
+
+            var viewModel = new IndexView
+            {
+                Avioes = avioes,
+                TotalItens = total,
+                PaginaAtual = paginaAtual,
+                ItensPorPagina = itensPorPagina
+            };
+
+            return View(viewModel);
+
+        }
+
+        [HttpGet]
+        public IActionResult ListarInativos(int paginaAtual = 1, int inativo = 0, int itensPorPagina = 5)
+        {
+            var avioes = _aviaoService.ListarInativos(paginaAtual, itensPorPagina, inativo, out int total);
+
+            var viewModel = new IndexView
+            {
+                Avioes = avioes,
+                TotalItens = total,
+                PaginaAtual = paginaAtual,
+                ItensPorPagina = itensPorPagina
+            };
+
+            return View(viewModel);
+
+        }
     }
 }

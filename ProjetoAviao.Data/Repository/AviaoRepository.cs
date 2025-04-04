@@ -1,4 +1,5 @@
-﻿using ProjetoAviao.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetoAviao.Data.Context;
 using ProjetoAviao.Data.Repository.Interface;
 using ProjetoAviao.Dominio.Dominio;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProjetoAviao.Data.Repository
 {
@@ -22,6 +24,32 @@ namespace ProjetoAviao.Data.Repository
         {
             _db.Add(aviao);
             _db.SaveChanges();
+        }
+
+        public List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo, out int totalItens)
+        {
+            var query = _db.Avioes.Where(a => a.Ativo == 1);
+
+            totalItens = query.Count();
+
+            return query
+                .OrderBy(a => a.Id)
+                .Skip((paginaAtual - 1) * itensPorPagina)
+                .Take(itensPorPagina)
+                .ToList();
+        }
+
+        public List<Aviao> ListarInativos(int paginaAtual, int itensPorPagina, int inativo, out int totalItens)
+        {
+            var query = _db.Avioes.Where(a => a.Ativo == 0);
+
+            totalItens = query.Count();
+
+            return query
+                .OrderBy(a => a.Id)
+                .Skip((paginaAtual - 1) * itensPorPagina)
+                .Take(itensPorPagina)
+                .ToList();
         }
 
         public List<Aviao> ObterPaginado(int paginaAtual, int itensPorPagina, out int totalItens)
