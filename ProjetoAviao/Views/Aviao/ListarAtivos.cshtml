@@ -36,7 +36,7 @@
                     <td>@aviao.Destino</td>
                     <td>@if (aviao.Ativo == 1)
                         {
-                            <span class="badge bg-success">1</span>
+                            <span class="badge bg-success">Ativos</span>
                         }
                     </td>
                 </tr>
@@ -50,18 +50,20 @@
 
             <!-- Primeira Página -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="ListarAtivos"
                    asp-route-paginaAtual="1"
-                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                   asp-route-itensPorPagina="@Model.ItensPorPagina"
+                   asp-route-ativo="@Context.Request.Query["ativo"]">
                     « Primeira
                 </a>
             </li>
 
             <!-- Página Anterior -->
             <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="ListarAtivos"
                    asp-route-paginaAtual="@(Model.PaginaAtual - 1)"
-                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                   asp-route-itensPorPagina="@Model.ItensPorPagina"
+                   asp-route-ativo="@Context.Request.Query["ativo"]">
                     ‹ Anterior
                 </a>
             </li>
@@ -70,9 +72,10 @@
             @for (int i = 1; i <= Model.TotalPaginas; i++)
             {
                 <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
-                    <a class="page-link" asp-action="Index"
+                    <a class="page-link" asp-action="ListarAtivos"
                        asp-route-paginaAtual="@i"
-                       asp-route-itensPorPagina="@Model.ItensPorPagina">
+                       asp-route-itensPorPagina="@Model.ItensPorPagina"
+                       asp-route-ativo="@Context.Request.Query["ativo"]">
                         @i
                     </a>
                 </li>
@@ -82,7 +85,8 @@
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
                 <a class="page-link" asp-action="Index"
                    asp-route-paginaAtual="@(Model.PaginaAtual + 1)"
-                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                   asp-route-itensPorPagina="@Model.ItensPorPagina"
+                   asp-route-ativo="@Context.Request.Query["ativo"]">
                     Próxima ›
                 </a>
             </li>
@@ -91,13 +95,15 @@
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
                 <a class="page-link" asp-action="Index"
                    asp-route-paginaAtual="@Model.TotalPaginas"
-                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                   asp-route-itensPorPagina="@Model.ItensPorPagina"
+                   asp-route-ativo="@Context.Request.Query["ativo"]">
                     Última »
                 </a>
             </li>
 
         </ul>
     </nav>
+
     @section Scripts {
     <script>
         document.getElementById("buscaTabela").addEventListener("keyup", function () {

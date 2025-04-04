@@ -37,7 +37,7 @@
                     <td>
                         @if (aviao.Ativo == 0)
                         {
-                            <span class="badge bg-danger">0</span>
+                            <span class="badge bg-danger">Inativos</span>
                         }
                     </td>
                 </tr>
@@ -71,7 +71,7 @@
             @for (int i = 1; i <= Model.TotalPaginas; i++)
             {
                 <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
-                    <a class="page-link" asp-action="Index"
+                    <a class="page-link" asp-action="ListarInativos"
                        asp-route-paginaAtual="@i"
                        asp-route-itensPorPagina="@Model.ItensPorPagina">
                         @i
@@ -81,7 +81,7 @@
 
             <!-- Próxima Página -->
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="ListarInativos"
                    asp-route-paginaAtual="@(Model.PaginaAtual + 1)"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     Próxima ›
@@ -90,7 +90,7 @@
 
             <!-- Última Página -->
             <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
-                <a class="page-link" asp-action="Index"
+                <a class="page-link" asp-action="ListarInativos"
                    asp-route-paginaAtual="@Model.TotalPaginas"
                    asp-route-itensPorPagina="@Model.ItensPorPagina">
                     Última »
