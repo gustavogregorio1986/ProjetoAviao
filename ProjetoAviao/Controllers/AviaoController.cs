@@ -33,7 +33,8 @@ namespace ProjetoAviao.Controllers
                         Aviacao = aviao.Aviacao,
                         Tipo = aviao.Tipo,
                         Origem = aviao.Origem,
-                        Destino = aviao.Destino
+                        Destino = aviao.Destino,
+                        Ativo = aviao.Ativo
                     };
 
                     _aviaoService.AdicionarAviao(aviao);
@@ -58,9 +59,20 @@ namespace ProjetoAviao.Controllers
         }
 
 
-        public IActionResult Consultar()
+        [HttpGet]
+        public IActionResult Consultar(int paginaAtual = 1, int itensPorPagina = 5)
         {
-            return View();
+            var avioes = _aviaoService.ObterPaginado(paginaAtual, itensPorPagina, out int total);
+
+            var viewModel = new IndexView
+            {
+                Avioes = avioes,
+                TotalItens = total,
+                PaginaAtual = paginaAtual,
+                ItensPorPagina = itensPorPagina
+            };
+
+            return View(viewModel);
         }
     }
 }

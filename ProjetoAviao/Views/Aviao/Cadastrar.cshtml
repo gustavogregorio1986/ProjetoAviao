@@ -41,6 +41,18 @@
         <span asp-validation-for="Destino" class="text-danger"></span>
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+            <label for="ativo" class="form-label">Status</label>
+            <select class="form-select" asp-for="Ativo">
+                <option value="">Selecione ativo</option>
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+            <span asp-validation-for="Ativo" class="text-danger"></span>
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
 </form>
 </div>

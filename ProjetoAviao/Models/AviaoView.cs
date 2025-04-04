@@ -20,5 +20,8 @@ namespace ProjetoAviao.Models
 
         [Required(ErrorMessage = "Campo obrigatorio do destino")]
         public string? Destino { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatorio ativo")]
+        public int Ativo { get; set; }
     }
 }

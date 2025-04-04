@@ -10,5 +10,7 @@ namespace ProjetoAviao.Data.Repository.Interface
     public interface IAviaoRepository
     {
         void AdicionarAviao(Aviao aviao);
+
+        List<Aviao> ObterPaginado(int paginaAtual, int itensPorPagina, out int totalItens);
     }
 }

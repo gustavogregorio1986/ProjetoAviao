@@ -1,3 +1,57 @@
-﻿@{
+﻿@model IndexView
+
+@{
     ViewData["Title"] = "Consultar Aviões";
+}
+
+<h2>Consulta de Aviões</h2>
+<p>Total de aviões cadastrados: <strong>@Model.TotalItens</strong></p>
+
+@if(Model.Avioes.Any())
+{
+    <table class="table table-striped table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Aviação</th>
+                <th>Tipo</th>
+                <th>Origem</th>
+                <th>Conexão</th>
+                <th>Destino</th>
+                <th>Ativo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var aviao in Model.Avioes)
+            {
+                <tr>
+                    <td>@aviao.Id</td>
+                    <td>@aviao.Aviacao</td>
+                    <td>@aviao.Tipo</td>
+                    <td>@aviao.Origem</td>
+                    <td>@aviao.Conexao</td>
+                    <td>@aviao.Destino</td>
+                    <td>@aviao.Ativo</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Paginação -->
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPaginas; i++)
+            {
+                <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-paginaAtual="@i" asp-route-itensPorPagina="@Model.ItensPorPagina">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+else
+{
+    <div class="alert alert-warning text-center" role="alert">
+        Nenhum dado encontrado na tabela.
+    </div>
 }

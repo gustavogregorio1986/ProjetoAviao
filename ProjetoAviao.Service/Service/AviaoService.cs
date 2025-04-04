@@ -22,5 +22,10 @@ namespace ProjetoAviao.Service.Service
         {
             _repository.AdicionarAviao(aviao);
         }
+
+        public List<Aviao> ObterPaginado(int paginaAtual, int itensPorPagina, out int totalItens)
+        {
+            return _repository.ObterPaginado(paginaAtual, itensPorPagina, out totalItens);
+        }
     }
 }

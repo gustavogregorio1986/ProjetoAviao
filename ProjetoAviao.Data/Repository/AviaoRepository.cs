@@ -23,5 +23,16 @@ namespace ProjetoAviao.Data.Repository
             _db.Add(aviao);
             _db.SaveChanges();
         }
+
+        public List<Aviao> ObterPaginado(int paginaAtual, int itensPorPagina, out int totalItens)
+        {
+            totalItens = _db.Avioes.Count();
+
+            return _db.Avioes
+                .OrderBy(a => a.Id)
+                .Skip((paginaAtual - 1) * itensPorPagina)
+                .Take(totalItens)
+                .ToList();
+        }
     }
 }

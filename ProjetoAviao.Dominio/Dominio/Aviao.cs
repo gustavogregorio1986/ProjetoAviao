@@ -19,5 +19,7 @@ namespace ProjetoAviao.Dominio.Dominio
         public string? Conexao { get; set; }
 
         public string? Destino { get; set; }
+
+        public int Ativo { get; set; }
     }
 }
