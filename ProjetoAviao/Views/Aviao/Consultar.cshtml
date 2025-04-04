@@ -38,16 +38,60 @@
     </table>
 
     <!-- Paginação -->
-    <nav>
-        <ul class="pagination">
+    <nav aria-label="Navegação de páginas">
+        <ul class="pagination justify-content-center">
+
+            <!-- Primeira Página -->
+            <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-paginaAtual="1"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    « Primeira
+                </a>
+            </li>
+
+            <!-- Página Anterior -->
+            <li class="page-item @(Model.PaginaAtual == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-paginaAtual="@(Model.PaginaAtual - 1)"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    ‹ Anterior
+                </a>
+            </li>
+
+            <!-- Números de Página -->
             @for (int i = 1; i <= Model.TotalPaginas; i++)
             {
                 <li class="page-item @(i == Model.PaginaAtual ? "active" : "")">
-                    <a class="page-link" asp-action="Index" asp-route-paginaAtual="@i" asp-route-itensPorPagina="@Model.ItensPorPagina">@i</a>
+                    <a class="page-link" asp-action="Index"
+                       asp-route-paginaAtual="@i"
+                       asp-route-itensPorPagina="@Model.ItensPorPagina">
+                        @i
+                    </a>
                 </li>
             }
+
+            <!-- Próxima Página -->
+            <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-paginaAtual="@(Model.PaginaAtual + 1)"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    Próxima ›
+                </a>
+            </li>
+
+            <!-- Última Página -->
+            <li class="page-item @(Model.PaginaAtual == Model.TotalPaginas ? "disabled" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-paginaAtual="@Model.TotalPaginas"
+                   asp-route-itensPorPagina="@Model.ItensPorPagina">
+                    Última »
+                </a>
+            </li>
+
         </ul>
     </nav>
+
 }
 else
 {
