@@ -26,6 +26,12 @@ namespace ProjetoAviao.Data.Repository
             _db.SaveChanges();
         }
 
+        public void Atualizar(Aviao aviao)
+        {
+            _db.Avioes.Update(aviao);
+            _db.SaveChanges();
+        }
+
         public List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo, out int totalItens)
         {
             var query = _db.Avioes.Where(a => a.Ativo == 1);
@@ -61,6 +67,11 @@ namespace ProjetoAviao.Data.Repository
                 .Skip((paginaAtual - 1) * itensPorPagina)
                 .Take(totalItens)
                 .ToList();
+        }
+
+        public Aviao ObterPorId(Guid id)
+        {
+            return _db.Avioes.FirstOrDefault(a => a.Id == id);
         }
     }
 }

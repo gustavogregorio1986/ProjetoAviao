@@ -16,5 +16,8 @@ namespace ProjetoAviao.Service.Service.Interface
         List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo, out int totalItens);
 
         List<Aviao> ListarInativos(int paginaAtual, int itensPorPagina, int inativo, out int totalItens);
+
+        void AlternarStatus(Guid id);
+
     }
 }

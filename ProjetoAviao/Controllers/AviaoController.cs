@@ -108,5 +108,12 @@ namespace ProjetoAviao.Controllers
             return View(viewModel);
 
         }
+
+        [HttpPost]
+        public IActionResult AlternarStatus(Guid id)
+        {
+            _aviaoService.AlternarStatus(id);
+            return RedirectToAction("Consultar");
+        }
     }
 }

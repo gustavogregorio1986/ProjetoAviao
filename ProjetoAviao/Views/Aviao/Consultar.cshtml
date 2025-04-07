@@ -1,8 +1,10 @@
 ﻿@model IndexView
 
+<div>
 @{
     ViewData["Title"] = "Consultar Aviões";
 }
+</div>
 
 <h2>Consulta de Aviões</h2>
 <p class="text-muted">Exibindo @Model.Avioes.Count de @Model.TotalItens registros</p>
@@ -22,6 +24,7 @@
                 <th>Conexão</th>
                 <th>Destino</th>
                 <th>Ativo</th>
+                <th>Trocar Status</th>
             </tr>
         </thead>
         <tbody>
@@ -43,6 +46,14 @@
                         {
                             <span class="badge bg-danger">Inativo</span>
                         }
+                    </td>
+                    <td>
+                        <form asp-action="AlternarStatus" method="post">
+                            <input type="hidden" name="id" value="@aviao.Id" />
+                            <button type="submit" class="btn @(aviao.Ativo == 1 ? "btn-danger" : "btn-success")">
+                                @(aviao.Ativo == 1 ? "Desativar" : "Ativar")
+                            </button>
+                        </form>
                     </td>
                 </tr>
             }

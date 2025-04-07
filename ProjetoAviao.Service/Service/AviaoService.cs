@@ -23,6 +23,18 @@ namespace ProjetoAviao.Service.Service
             _repository.AdicionarAviao(aviao);
         }
 
+        public void AlternarStatus(Guid id)
+        {
+            var aviao = _repository.ObterPorId(id);
+
+            if (aviao == null)
+                throw new Exception("Aviao não encontrado!");
+
+            aviao.AlterarStatus();
+
+            _repository.Atualizar(aviao);
+        }
+
         public List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo ,out int totalItens)
         {
             return _repository.ListarAtivos(paginaAtual, itensPorPagina, ativo, out totalItens);
