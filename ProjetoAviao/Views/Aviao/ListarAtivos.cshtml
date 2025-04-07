@@ -4,7 +4,7 @@
     ViewData["Title"] = "Listar Aviões Inavitos";
 }
 
-<h2>Listar Ativos de aviões</h2>
+<h2 class="text-center">Listar Ativos de aviões</h2>
 <p class="text-muted">Exibindo @Model.Avioes.Count de @Model.TotalItens registros</p>
 
 @if (Model.Avioes.Any())
@@ -20,7 +20,7 @@
                 <th>Origem</th>
                 <th>Conexão</th>
                 <th>Destino</th>
-                <th>Ativo</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
