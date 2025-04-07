@@ -1,4 +1,6 @@
-﻿using ProjetoAviao.Data.Repository.Interface;
+﻿using ClosedXML.Excel;
+using ProjetoAviao.Data.Repository;
+using ProjetoAviao.Data.Repository.Interface;
 using ProjetoAviao.Dominio.Dominio;
 using ProjetoAviao.Service.Service.Interface;
 using System;
@@ -34,6 +36,8 @@ namespace ProjetoAviao.Service.Service
 
             _repository.Atualizar(aviao);
         }
+
+       
 
         public List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo ,out int totalItens)
         {

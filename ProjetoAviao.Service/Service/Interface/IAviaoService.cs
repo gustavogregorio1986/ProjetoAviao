@@ -19,5 +19,6 @@ namespace ProjetoAviao.Service.Service.Interface
 
         void AlternarStatus(Guid id);
 
+
     }
 }
