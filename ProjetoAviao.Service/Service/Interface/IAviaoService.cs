@@ -1,4 +1,5 @@
-﻿using ProjetoAviao.Dominio.Dominio;
+﻿using ProjetoAviao.Data.DTO;
+using ProjetoAviao.Dominio.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace ProjetoAviao.Service.Service.Interface
         List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo, out int totalItens);
 
         List<Aviao> ListarInativos(int paginaAtual, int itensPorPagina, int inativo, out int totalItens);
+
+        ExportacaoExcelResultado ExportarAvioesParaExcel(int paginaAtual, int itensPorPagina);
 
         void AlternarStatus(Guid id);
 

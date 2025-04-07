@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
+using ProjetoAviao.Data.DTO;
 using ProjetoAviao.Dominio.Dominio;
 using ProjetoAviao.Models;
 using ProjetoAviao.Service.Service.Interface;
@@ -115,5 +117,21 @@ namespace ProjetoAviao.Controllers
             _aviaoService.AlternarStatus(id);
             return RedirectToAction("Consultar");
         }
+
+        public ActionResult ExportarExcel(int paginaAtual, int itensPorPagina)
+        {
+            var resultado = _aviaoService.ExportarAvioesParaExcel(paginaAtual, itensPorPagina);
+
+            // Se quiser usar o resultado.TotalItens, salve em TempData ou ViewBag
+            ViewBag.TotalItens = resultado.TotalItens;
+
+            return File(
+                resultado.Arquivo,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "Avioes.xlsx"
+            );
+        }
+
+
     }
 }

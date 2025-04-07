@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using ProjetoAviao.Data.DTO;
 using ProjetoAviao.Data.Repository;
 using ProjetoAviao.Data.Repository.Interface;
 using ProjetoAviao.Dominio.Dominio;
@@ -37,7 +38,45 @@ namespace ProjetoAviao.Service.Service
             _repository.Atualizar(aviao);
         }
 
-       
+        public ExportacaoExcelResultado ExportarAvioesParaExcel(int paginaAtual, int itensPorPagina)
+        {
+            int totalItens;
+            var avioes = _repository.ObterPaginado(paginaAtual, itensPorPagina, out totalItens);
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Avioes");
+
+                worksheet.Cell(1, 1).Value = "Aviacao";
+                worksheet.Cell(1, 2).Value = "Tipo";
+                worksheet.Cell(1, 3).Value = "Origem";
+                worksheet.Cell(1, 4).Value = "Conexao";
+                worksheet.Cell(1, 5).Value = "Destino";
+                worksheet.Cell(1, 6).Value = "Status";
+
+                int linha = 2;
+                foreach (var aviao in avioes)
+                {
+                    worksheet.Cell(linha, 1).Value = aviao.Aviacao;
+                    worksheet.Cell(linha, 2).Value = aviao.Tipo;
+                    worksheet.Cell(linha, 3).Value = aviao.Origem;
+                    worksheet.Cell(linha, 4).Value = aviao.Conexao;
+                    worksheet.Cell(linha, 5).Value = aviao.Destino;
+                    worksheet.Cell(linha, 6).Value = aviao.Ativo == 1 ? "Ativo" : "Inativo";
+                    linha++;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return new ExportacaoExcelResultado
+                    {
+                        Arquivo = stream.ToArray(),
+                        TotalItens = totalItens
+                    };
+                }
+            }
+        }
 
         public List<Aviao> ListarAtivos(int paginaAtual, int itensPorPagina, int ativo ,out int totalItens)
         {
