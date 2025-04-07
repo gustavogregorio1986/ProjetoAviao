@@ -15,7 +15,6 @@
     <table class="table table-striped table-bordered table-hover text-center" id="tabelaAvioes">
         <thead class="table-dark">
             <tr>
-                <th>ID</th>
                 <th>Aviação</th>
                 <th>Tipo</th>
                 <th>Origem</th>
@@ -28,7 +27,6 @@
             @foreach (var aviao in Model.Avioes)
             {
                 <tr>
-                    <td>@aviao.Id</td>
                     <td>@aviao.Aviacao</td>
                     <td>@aviao.Tipo</td>
                     <td>@aviao.Origem</td>

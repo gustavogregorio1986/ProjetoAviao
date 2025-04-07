@@ -22,6 +22,8 @@ namespace ProjetoAviao.Dominio.Dominio
 
         public int Ativo { get; set; }
 
+        public Aviao() { }
+
         public Aviao(string aviacao)
         {
             Id = Guid.NewGuid();
