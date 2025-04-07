@@ -52,7 +52,7 @@ namespace ProjetoAviao.Data.Repository
             totalItens = query.Count();
 
             return query
-                .OrderBy(a => a.Id)
+                .OrderBy(a => a.Aviacao)
                 .Skip((paginaAtual - 1) * itensPorPagina)
                 .Take(itensPorPagina)
                 .ToList();
