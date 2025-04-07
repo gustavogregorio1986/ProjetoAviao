@@ -48,7 +48,8 @@
                     <td>
                         <form asp-action="AlternarStatus" method="post">
                             <input type="hidden" name="id" value="@aviao.Id" />
-                            <button type="submit" class="btn @(aviao.Ativo == 1 ? "btn-danger" : "btn-success")">
+                            <button type="submit" class="btn btn-sm @(aviao.Ativo == 1 ? "btn-danger" : "btn-success")"
+                                    onclick="return confirm('Tem certeza que deseja @(aviao.Ativo == 1 ? "desativar" : "ativar") este avião?');">
                                 @(aviao.Ativo == 1 ? "Desativar" : "Ativar")
                             </button>
                         </form>
